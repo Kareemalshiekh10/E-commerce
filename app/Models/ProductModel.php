@@ -23,7 +23,7 @@ class ProductModel extends Model
         ->join('users','users.id','=','product.created_by')
         ->where('product.is_delete', '=', 0)
         ->orderBy('product.id','desc')
-        ->paginate(1);
+        ->paginate(5);
     }
 
     public static function checkSlug($slug)

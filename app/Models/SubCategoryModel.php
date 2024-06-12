@@ -22,7 +22,7 @@ class SubCategoryModel extends Model
             ->join('users','users.id','=','sub_category.created_by')
             ->where('sub_category.is_delete', '=', 0)  // Exclude deleted records
             ->orderBy('sub_category.id', 'desc')
-            ->paginate(1);
+            ->paginate(5);
     }
 
     static public function getRecordCategory($category_id)
@@ -36,7 +36,6 @@ class SubCategoryModel extends Model
             ->get();
     }
 
-    // The following function name must match the AJAX call in the controller
     static public function getRecordSubCategory($category_id)
     {
         return self::getRecordCategory($category_id);

@@ -24,7 +24,7 @@
                         <div class="card card-primary">
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ url('admin/category/add') }}" method="POST">
+                            <form action="" method="POST">
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
