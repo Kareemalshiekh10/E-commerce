@@ -30,7 +30,8 @@
                         <a href="#">Links</a>
                         <ul>
                             <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
-                            <li><a href="{{ url('wishlist.html') }}"><i class="icon-heart-o"></i>My Wishlist <span>(3)</span></a></li>
+                            <li><a href="{{ url('wishlist.html') }}"><i class="icon-heart-o"></i>My Wishlist
+                                    <span>(3)</span></a></li>
                             <li><a href="{{ url('about.html') }}">About Us</a></li>
                             <li><a href="{{ url('contact.html') }}">Contact Us</a></li>
                             <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
@@ -56,86 +57,64 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="active">
-                            <a href="{{ url('') }}" >Home</a>
+                            <a href="{{ url('') }}">Home</a>
 
                         </li>
                         <li>
-                            <a href="category.html" class="sf-with-ul">Shop</a>
-
+                            <a href="javascript:;" class="sf-with-ul">Shop</a>
                             <div class="megamenu megamenu-md">
                                 <div class="row no-gutters">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <div class="menu-col">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="menu-title">Shop with sidebar</div><!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="category-list.html">Shop List</a></li>
-                                                        <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
-                                                        <li><a href="category.html">Shop Grid 3 Columns</a></li>
-                                                        <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
-                                                        <li><a href="category-market.html"><span>Shop Market<span class="tip tip-new">New</span></span></a></li>
-                                                    </ul>
+                                                @for ($i = 1; $i <= 8; $i++)
+                                                    <div class="col-md-4" style="margin-bottom:20px;">
+                                                        <a href="" class="menu-title">Shop with
+                                                            sidebar</a><!-- End .menu-title -->
+                                                        <ul>
+                                                            <li><a href="category-list.html">Shop List</a></li>
+                                                            <li><a href="category-2cols.html">Shop Grid 2 Columns</a>
+                                                            </li>
+                                                            <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                                                            <li><a href="category-4cols.html">Shop Grid 4 Columns</a>
+                                                            </li>
+                                                            <li><a href="category-market.html"><span>Shop Market<span
+                                                                            class="tip tip-new">New</span></span></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div><!-- End .col-md-6 -->
+                                                @endfor
 
-                                                    <div class="menu-title">Shop no sidebar</div><!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
-                                                        <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-md-6 -->
-
-                                                <div class="col-md-6">
-                                                    <div class="menu-title">Product Category</div><!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
-                                                        <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                                    </ul>
-                                                    <div class="menu-title">Shop Pages</div><!-- End .menu-title -->
-                                                    <ul>
-                                                        <li><a href="cart.html">Cart</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                                        <li><a href="dashboard.html">My Account</a></li>
-                                                        <li><a href="#">Lookbook</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-md-6 -->
                                             </div><!-- End .row -->
                                         </div><!-- End .menu-col -->
                                     </div><!-- End .col-md-8 -->
 
-                                    <div class="col-md-4">
-                                        <div class="banner banner-overlay">
-                                            <a href="category.html" class="banner banner-menu">
-                                                <img src="assets/images/menu/banner-1.jpg" alt="Banner">
 
-                                                <div class="banner-content banner-content-top">
-                                                    <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->
-                                                </div><!-- End .banner-content -->
-                                            </a>
-                                        </div><!-- End .banner banner-overlay -->
-                                    </div><!-- End .col-md-4 -->
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-md -->
                         </li>
 
-                        
+
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->
 
             <div class="header-right">
                 <div class="header-search">
-                    <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-                    <form action="#" method="get">
+                    <a href="#" class="search-toggle" role="button" title="Search"><i
+                            class="icon-search"></i></a>
+                    <form action="{{ url('search') }}" method="get">
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
-                            <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                            <input type="search" class="form-control" name="q" id="q"
+                                placeholder="Search in..." required>
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->
 
                 <div class="dropdown cart-dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
                         <span class="cart-count">2</span>
                     </a>
@@ -159,7 +138,8 @@
                                         <img src="assets/images/products/cart/product-1.jpg" alt="product">
                                     </a>
                                 </figure>
-                                <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                <a href="#" class="btn-remove" title="Remove Product"><i
+                                        class="icon-close"></i></a>
                             </div><!-- End .product -->
 
                             <div class="product">
@@ -179,7 +159,8 @@
                                         <img src="assets/images/products/cart/product-2.jpg" alt="product">
                                     </a>
                                 </figure>
-                                <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                <a href="#" class="btn-remove" title="Remove Product"><i
+                                        class="icon-close"></i></a>
                             </div><!-- End .product -->
                         </div><!-- End .cart-product -->
 
@@ -191,7 +172,8 @@
 
                         <div class="dropdown-cart-action">
                             <a href="cart.html" class="btn btn-primary">View Cart</a>
-                            <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i
+                                    class="icon-long-arrow-right"></i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
