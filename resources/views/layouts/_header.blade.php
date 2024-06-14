@@ -71,6 +71,7 @@
                                                     $getCategoryHeader = App\Models\CategoryModel::getRecordMenu();
                                                 @endphp
                                                 @foreach ($getCategoryHeader as $value_h_c)
+                                                @if (!empty($value_h_c->getSubCategory->count()))
                                                     <div class="col-md-4" style="margin-bottom:20px;">
                                                         <a href="{{ url($value_h_c->slug) }}" class="menu-title">{{ $value_h_c->name }}</a><!-- End .menu-title -->
                                                         <ul>
@@ -80,6 +81,7 @@
                                                             
                                                         </ul>
                                                     </div><!-- End .col-md-6 -->
+                                                    @endif
                                                 @endforeach
 
                                             </div><!-- End .row -->
