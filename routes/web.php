@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 
 
+use App\Http\Controllers\ProductController as ProductFront;
+
+
 
 use App\Http\Controllers\HomeController;
 
@@ -79,5 +82,8 @@ Route::post('admin/product_image_sortable', [ProductController::class, 'product_
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::get('{category?}/{subcategory?}', [ProductFront::class, 'getCategory']);
+
+
 
 
