@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ url('assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+
+    @yield('style')
 </head>
 
 <body>
@@ -164,7 +166,7 @@
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
 
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -193,7 +195,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Plugins JS File -->
     <script src="{{ url('assets/js/jquery.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -202,8 +204,11 @@
     <script src="{{ url('assets/js/superfish.min.js') }}"></script>
     <script src="{{ url('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ url('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    @yield('script')
     <!-- Main JS File -->
     <script src="{{ url('assets/js/main.js') }}"></script>
+
+   
 </body>
 
 

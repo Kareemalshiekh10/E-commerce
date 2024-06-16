@@ -17,9 +17,9 @@ class SubCategoryModel extends Model
 
     static public function getRecord()
     {
-        return self::select('sub_category.*','users.name as created_by_name','category.name as category_name')
-            ->join('category','category.id','=','sub_category.category_id')
-            ->join('users','users.id','=','sub_category.created_by')
+        return self::select('sub_category.*', 'users.name as created_by_name', 'category.name as category_name')
+            ->join('category', 'category.id', '=', 'sub_category.category_id')
+            ->join('users', 'users.id', '=', 'sub_category.created_by')
             ->where('sub_category.is_delete', '=', 0)  // Exclude deleted records
             ->orderBy('sub_category.id', 'desc')
             ->paginate(5);
@@ -34,19 +34,22 @@ class SubCategoryModel extends Model
     }
 
 
-    static public function getRecordCategory($category_id)
+    static public function getRecordSubCategory($category_id)
     {
         return self::select('sub_category.*')
-            ->join('users','users.id','=','sub_category.created_by')
-            ->where('sub_category.is_delete', '=', 0) 
-            ->where('sub_category.status', '=', 0) 
-            ->where('sub_category.category_id', '=', $category_id) 
+            ->join('users', 'users.id', '=', 'sub_category.created_by')
+            ->where('sub_category.is_delete', '=', 0)
+            ->where('sub_category.status', '=', 0)
+            ->where('sub_category.category_id', '=', $category_id)
             ->orderBy('sub_category.name', 'asc')
             ->get();
     }
 
-    static public function getRecordSubCategory($category_id)
+    public function TotalProduct()
     {
-        return self::getRecordCategory($category_id);
+        return $this->hasMany(ProductModel::class, 'sub_category_id')
+            ->where('product.is_delete','=', 0)
+            ->where('product.status','=', 0)
+            ->count();
     }
 }
