@@ -44,7 +44,7 @@
                         <div class="toolbox">
                             <div class="toolbox-left">
                                 <div class="toolbox-info">
-                                    Showing <span>9 of 56</span> Products
+                                    Showing <span>{{ $getProduct->perPage() }} of {{ $getProduct->total() }}</span> Products
                                 </div><!-- End .toolbox-info -->
                             </div><!-- End .toolbox-left -->
 
@@ -65,15 +65,21 @@
                             </div><!-- End .toolbox-right -->
                         </div><!-- End .toolbox -->
                         <div id="getProductAjax">
-                            @include('product._list');
+                            @include('product._list')
+                        </div>
+                        <div style="text-align: center;">
+                            <a href="javascript:;" @if (empty($page)) style="display:none;" @endif
+                                data-page="{{ $page }}" class="btn btn-primary LoadMore">Load More</a>
                         </div>
 
                     </div><!-- End .col-lg-9 -->
                     <aside class="col-lg-3 order-lg-first">
                         <form id="FilterForm" method="post" action="">
                             {{ csrf_field() }}
-                            <input type="hidden" name="old_category_id" value="{{ !empty($getCategory) ? $getCategory->id : '' }}">
-                            <input type="hidden" name="old_sub_category_id" value="{{ !empty($getSubCategory) ? $getSubCategory->id : '' }}">
+                            <input type="hidden" name="old_category_id"
+                                value="{{ !empty($getCategory) ? $getCategory->id : '' }}">
+                            <input type="hidden" name="old_sub_category_id"
+                                value="{{ !empty($getSubCategory) ? $getSubCategory->id : '' }}">
                             <input type="hidden" name="sub_category_id" id="get_sub_category_id">
                             <input type="hidden" name="brand_id" id="get_brand_id">
                             <input type="hidden" name="color_id" id="get_color_id">
@@ -262,63 +268,95 @@
 
         });
         var xhr;
+
         function FilterForm() {
-            if(xhr && xhr.readyState != 4){
+            if (xhr && xhr.readyState != 4) {
                 xhr.abort();
             }
-           xhr = $.ajax({
+            xhr = $.ajax({
                 type: 'POST',
                 url: "{{ url('get_filter_product_ajax') }}",
                 data: $('#FilterForm').serialize(),
                 dataType: "json",
                 success: function(data) {
-                    $('#getProductAjax').html(data.success); 
+                    $('#getProductAjax').html(data.success);
+                $(this).attr('data-page',data.page);
+                // Update the data-page attribute for the next page
+                if (data.page) {
+                    $('.LoadMore').attr('data-page', data.page);
+                } else {
+                    $('.LoadMore').hide(); // Hide the button if no more pages
+                }
                 },
                 error: function(data) {
                     /* console.log('Error:', data); */
                 }
-            })
+            });
         }
 
-         // Slider For category pages / filter price
-
-         var i = 0;
-    if ( typeof noUiSlider === 'object' ) {
-		var priceSlider  = document.getElementById('price-slider');
-
-		noUiSlider.create(priceSlider, {
-			start: [ 0, 1000 ],
-			connect: true,
-			step: 1,
-			margin: 1, 
-			range: {
-				'min': 0,
-				'max': 1000
-			},
-			tooltips: true,
-			format: wNumb({
-		        decimals: 0,
-		        prefix: '$'
-		    })
-		});
-
-		// Update Price Range
-		priceSlider.noUiSlider.on('update', function( values, handle ){
-            var start_price = values[0];
-            var end_price = values[1];
-            $('#get_start_price').val(start_price);
-            $('#get_end_price').val(end_price);
-			$('#filter-price-range').text(values.join(' - '));
-            if(i == 0 || i ==  1)
-            {
-                i++
+        $('body').delegate('.LoadMore', 'click', function() {
+        var page = $(this).attr('data-page');
+        $('.LoadMore').html('Loading...');
+        if (xhr && xhr.readyState != 4) {
+            xhr.abort();
+        }
+        xhr = $.ajax({
+            type: 'POST',
+            url: "{{ url('get_filter_product_ajax') }}?page=" + page,
+            data: $('#FilterForm').serialize(),
+            dataType: "json",
+            success: function(data) {
+                $('#getProductAjax').append(data.success) // Append the new products
+                $(this).attr('data-page',data.page);
+                $('.LoadMore').html('Load More');
+                // Update the data-page attribute for the next page
+                if (data.page) {
+                    $('.LoadMore').attr('data-page', data.page);
+                } else {
+                    $('.LoadMore').hide(); // Hide the button if no more pages
+                }
+            },
+            error: function(data) {
+                /* console.log('Error:', data); */
             }
-            else
-            {
-                FilterForm()
-            }
-           
-		});
-	}
+        });
+    });
+
+        // Slider For category pages / filter price
+        var i = 0;
+        if (typeof noUiSlider === 'object') {
+            var priceSlider = document.getElementById('price-slider');
+
+            noUiSlider.create(priceSlider, {
+                start: [0, 1000],
+                connect: true,
+                step: 1,
+                margin: 1,
+                range: {
+                    'min': 0,
+                    'max': 1000
+                },
+                tooltips: true,
+                format: wNumb({
+                    decimals: 0,
+                    prefix: '$'
+                })
+            });
+
+            // Update Price Range
+            priceSlider.noUiSlider.on('update', function(values, handle) {
+                var start_price = values[0];
+                var end_price = values[1];
+                $('#get_start_price').val(start_price);
+                $('#get_end_price').val(end_price);
+                $('#filter-price-range').text(values.join(' - '));
+                if (i == 0 || i == 1) {
+                    i++
+                } else {
+                    FilterForm()
+                }
+
+            });
+        }
     </script>
 @endsection

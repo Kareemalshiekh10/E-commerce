@@ -54,5 +54,3 @@
     </div><!-- End .row -->
 </div><!-- End .products -->
 
-
-{!! $getProduct->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
