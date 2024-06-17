@@ -54,4 +54,13 @@ class ProductController extends Controller
             abort(404);
         }
     }
+
+    public function GetFilterProductAjax(Request $request)
+    {
+        $getProduct = ProductModel::getProduct();
+        return response()->json([
+            "status" => true,
+            "success" => view('product._list', ["getProduct"  => $getProduct,])->render(),],200
+        );
+    }
 }
