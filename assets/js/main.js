@@ -161,7 +161,7 @@ $(document).ready(function () {
         });
     }
 
-    // Slider For category pages / filter price
+/*     // Slider For category pages / filter price
     if ( typeof noUiSlider === 'object' ) {
 		var priceSlider  = document.getElementById('price-slider');
 
@@ -190,7 +190,7 @@ $(document).ready(function () {
 			$('#filter-price-range').text(values.join(' - '));
 		});
 	}
-
+ */
 	// Product countdown
 	if ( $.fn.countdown ) {
 		$('.product-countdown').each(function () {
