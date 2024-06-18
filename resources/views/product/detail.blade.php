@@ -523,9 +523,7 @@
     </main><!-- End .main -->
 @endsection
 @section('script')
-  
     <script src="{{ url('assets/js/bootstrap-input-spinner.js') }}"></script>
     <script src="{{ url('assets/js/jquery.elevateZoom.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap-input-spinner.js') }}"></script>
-
 @endsection
