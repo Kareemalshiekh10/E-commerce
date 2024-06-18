@@ -108,6 +108,14 @@ class ProductModel extends Model
         return ProductImageModel::where('product_id', '=', $product_id)->orderBy('order_by', 'asc')->first();
     }
 
+    public static function getSingleSlug($slug)
+    {
+        return self::where('slug', '=', $slug)
+        ->where('product.is_delete', '=', 0)
+        ->where('product.status', '=', 0)
+        ->first();
+    }
+
     public static function checkSlug($slug)
     {
         return self::where('slug', '=', $slug)->count();
@@ -126,5 +134,14 @@ class ProductModel extends Model
     public function getImage()
     {
         return $this->hasMany(ProductImageModel::class, "product_id")->orderBy('order_by', 'asc');
+    }
+    public function getCategory()
+    {
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
+
+    public function getSubCategory()
+    {
+        return $this->belongsTo(SubCategoryModel::class, 'sub_category_id');
     }
 }
