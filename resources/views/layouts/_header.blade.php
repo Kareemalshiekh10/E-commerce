@@ -92,8 +92,6 @@
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-md -->
                         </li>
-
-
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->
@@ -106,7 +104,7 @@
                         <div class="header-search-wrapper">
                             <label for="q" class="sr-only">Search</label>
                             <input type="search" class="form-control" name="q" id="q"
-                                placeholder="Search in..." required>
+                                placeholder="Search in..." value="{{ !empty(Request::get('q')) ? Request::get('q') : '' }}" required>
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->

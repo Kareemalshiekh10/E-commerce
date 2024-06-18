@@ -13,6 +13,29 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function getProductSearch(Request $request)
+    {
+            $data['meta_title'] = 'Search';
+            $data['meta_description'] = 'Search';
+            $data['meta_keywords'] = '';
+
+            $getProduct = ProductModel::getProduct();
+
+            $page=0;
+            if(!empty($getProduct->nextPageUrl())){
+                $parse_url = parse_url($getProduct->nextPageUrl());
+                if(!empty($parse_url['query']))
+                {
+                    parse_str($parse_url['query'], $get_array);
+                    $page = !empty($get_array['page']) ? $get_array['page'] : 0;
+                }
+            }
+            $data['page'] = $page;
+            $data['getProduct'] = $getProduct;
+            $data['getColor'] = ColorModel::getRecordActive();
+            $data['getBrand'] = BrandModel::getRecordActive();
+            return view('product.list',$data);
+    }
     public function getCategory($slug,$subslug ='')
     {
         $getProductSingle = ProductModel::getSingleSlug($slug);

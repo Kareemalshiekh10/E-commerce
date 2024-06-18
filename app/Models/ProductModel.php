@@ -94,6 +94,11 @@ class ProductModel extends Model
 
         }
 
+        if(!empty(Request::get('q')))
+        {
+            $return = $return->where('product.title', 'like', '%' . Request::get('q') . '%');
+        }
+
         $return = $return->where('product.is_delete', '=', 0)
             ->where('product.status', '=', 0)
             ->groupBy('product.id')
