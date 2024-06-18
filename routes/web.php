@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\PaymentController;
 
 
 use App\Http\Controllers\ProductController as ProductFront;
@@ -82,6 +83,11 @@ Route::post('admin/product_image_sortable', [ProductController::class, 'product_
 
 
 Route::get('/', [HomeController::class, 'home']);
+
+Route::get('cart', [PaymentController::class, 'cart']);
+Route::get('cart/delete/{rowId}', [PaymentController::class, 'cart_delete']);
+Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
+
 Route::get('search', [ProductFront::class, 'getProductSearch']);
 Route::post('get_filter_product_ajax', [ProductFront::class, 'GetFilterProductAjax']);
 Route::get('{category?}/{subcategory?}', [ProductFront::class, 'getCategory']);
