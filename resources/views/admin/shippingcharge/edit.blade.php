@@ -10,7 +10,6 @@
                     <div class="col-sm-12">
                         <h1>Edit Shipping Charge</h1>
                     </div>
-
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -28,25 +27,22 @@
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Shipping Charge Name <span style="color:red">*</span> </label>
-                                        <input type="text" class="form-control"  name="name" required value="{{ old('name', $getRecord->name) }}" placeholder="Color Name">
+                                        <label>Shipping Charge Name <span style="color:red">*</span></label>
+                                        <input type="text" class="form-control" name="name" required value="{{ old('name', $getRecord->name) }}" placeholder="Shipping Charge Name">
                                     </div>
 
-
                                     <div class="form-group">
-                                        <label>Price<span style="color:red">*</span> </label>
-                                        <input type="text" class="form-control"  name="price" required value="{{ old('price', $getRecord->price) }}" placeholder="Price">
+                                        <label>Price <span style="color:red">*</span></label>
+                                        <input type="text" class="form-control" name="price" required value="{{ old('price', $getRecord->price) }}" placeholder="Price">
                                     </div>
 
-
                                     <div class="form-group">
-                                        <label>Status<span style="color:red">*</span></label>
+                                        <label>Status <span style="color:red">*</span></label>
                                         <select class="form-control" required name="status">
-                                            <option {{ (old('status', $getRecord->status) == 0) ? 'selected' : '' }} value="0">Active</option>
-                                            <option {{ (old('status', $getRecord->status) == 1) ? 'selected' : '' }} value="1">Inactive</option>
+                                            <option {{ old('status', $getRecord->status) == 0 ? 'selected' : '' }} value="0">Active</option>
+                                            <option {{ old('status', $getRecord->status) == 1 ? 'selected' : '' }} value="1">Inactive</option>
                                         </select>
                                     </div>
-                                 
                                 </div>
                                 <!-- /.card-body -->
 
@@ -56,10 +52,8 @@
                             </form>
                         </div>
                         <!-- /.card -->
-
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- /.content -->

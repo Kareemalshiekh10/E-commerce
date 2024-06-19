@@ -43,15 +43,15 @@ class DiscountCodeController extends Controller
         $data['header_title'] = 'Edit Discount Code';
         return view('admin.discountcode.edit', $data);
     }
+
     public function update($id, Request $request)
     {
-        $DiscountCode = new DiscountCodeModel();
+        $DiscountCode = DiscountCodeModel::getSingle($id);
         $DiscountCode->name = trim($request->name);
         $DiscountCode->type = trim($request->type);
         $DiscountCode->percent_amount = trim($request->percent_amount);
         $DiscountCode->expire_date = trim($request->expire_date);
         $DiscountCode->status = trim($request->status);
-        $DiscountCode->is_delete = 0;
         $DiscountCode->is_delete = 0;
 
         $DiscountCode->save();

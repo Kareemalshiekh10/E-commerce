@@ -42,9 +42,10 @@ class ShippingChargeController extends Controller
         $data['header_title'] = 'Edit Shipping Charge';
         return view('admin.shippingcharge.edit', $data);
     }
+
     public function update($id, Request $request)
     {
-        $ShippingCharge = new ShippingChargeModel();
+        $ShippingCharge = ShippingChargeModel::getSingle($id);
         $ShippingCharge->name = trim($request->name);
         $ShippingCharge->price = trim($request->price);
         $ShippingCharge->status = trim($request->status);
@@ -54,7 +55,6 @@ class ShippingChargeController extends Controller
 
         return redirect('admin/shipping_charge/list')->with('success', "Shipping Charge successfully updated");
     }
-
     public function delete($id)
     {
         $ShippingCharge = ShippingChargeModel::getSingle($id);
