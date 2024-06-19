@@ -51,7 +51,7 @@
                 </button>
 
                 <a href="{{ url('') }}" class="logo" style="text-decoration: none; color: #28304B; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 36px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
-                    Intell$Mart
+                    Intell<span style="color: #c96;">$</span>Mart
                 </a>
                 
                 

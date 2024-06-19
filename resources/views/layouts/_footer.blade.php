@@ -5,7 +5,7 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
                         <a href="{{ url('') }}" class="footer-logo" style="text-decoration: none; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
-                            Intell$Mart
+                            Intell<span style="color: #c96;">$</span>Mart
                         </a>
                         <p style="color: #ccc;">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.</p>
 
