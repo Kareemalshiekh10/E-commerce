@@ -3,16 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 /* use anayarojo\shoppingcart\Cart; */
-use Cart;
+/* use Gloudemans\Shoppingcart\Cart; */
 /* use darryldecode\src\Darryldecode\Cart;  */
+use Cart;
+
 use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
-/* use Gloudemans\Shoppingcart\Cart; */
+use App\Models\DiscountCodeModel;
+
 
 
 class PaymentController extends Controller
 {
+
+    public function apply_discount_code(Request $request)
+    {
+        $getDiscount = DiscountCodeModel::CheckDiscount($request->discount_code);
+        if(!empty($getDiscount))
+        {
+            $total = Cart::SubTotal();
+            if($getDiscount->type == 'Amount')
+            {
+                $discount_amount = $getDiscount->percent_amount;
+                $payable_total = $total - $getDiscount->percent_amount;
+            }
+            else
+            {
+                $discount_amount = ($total * $getDiscount->percent_amount) / 100;
+                $payable_total = $total - $discount_amount ;
+            }
+            $json['status'] = true;
+            $json['discount_amount'] = number_format($discount_amount,2);
+            $json['payable_total'] = number_format($payable_total,2);
+            $json['message'] = 'Success';
+        }
+        else
+        {
+            $json['status'] = false;
+            $json['discount_amount'] = '0.00';
+            $json['payable_total'] = number_format(Cart::SubTotal(),2);
+            $json['message'] = 'Invalid Discount Code';
+        }
+        echo json_encode($json);
+    }
 
     public function cart(Request $request)
     {
