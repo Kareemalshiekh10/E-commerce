@@ -50,9 +50,11 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="{{ url('') }}" class="logo">
-                    <img src="{{ url('assets/images/logo.png') }}" alt="Molla Logo" width="105" height="25">
+                <a href="{{ url('') }}" class="logo" style="text-decoration: none; color: #28304B; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 36px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
+                    Intell$Mart
                 </a>
+                
+                
 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">

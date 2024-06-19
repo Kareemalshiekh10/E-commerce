@@ -4,8 +4,10 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <img src="{{ url('assets/images/logo-footer.png') }}" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                        <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+                        <a href="{{ url('') }}" class="footer-logo" style="text-decoration: none; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
+                            Intell$Mart
+                        </a>
+                        <p style="color: #ccc;">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.</p>
 
                         <div class="social-icons">
                             <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
@@ -16,7 +18,7 @@
                         </div><!-- End .soial-icons -->
                     </div><!-- End .widget about-widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
-
+                
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget">
                         <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
