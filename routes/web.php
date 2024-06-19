@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\DiscountCodeController;
 
 
 use App\Http\Controllers\ProductController as ProductFront;
@@ -79,6 +80,12 @@ Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_
 Route::post('admin/product_image_sortable', [ProductController::class, 'product_image_sortable']);
 
 
+Route::get('admin/discount_code/list', [DiscountCodeController::class, 'list']);
+Route::get('admin/discount_code/add', [DiscountCodeController::class, 'add']);
+Route::post('admin/discount_code/add', [DiscountCodeController::class, 'insert']);
+Route::get('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'edit']);
+Route::post('admin/discount_code/edit/{id}', [DiscountCodeController::class, 'update']);
+Route::get('admin/discount_code/delete/{id}', [DiscountCodeController::class, 'delete']);
 
 
 
