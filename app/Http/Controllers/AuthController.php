@@ -53,7 +53,7 @@ class AuthController extends Controller
             $json['status'] = false;
             $json['message'] = 'Email already exists';
         }
-        echo json_decode($json);
+        echo json_encode($json);
     }
     
 }
