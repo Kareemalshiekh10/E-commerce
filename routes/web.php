@@ -94,7 +94,11 @@ Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class
 
 
 
+
+
 Route::get('/', [HomeController::class, 'home']);
+
+Route::post('auth_register', [AuthController::class, 'auth_register']);
 
 Route::get('cart', [PaymentController::class, 'cart']);
 Route::post('update_cart', [PaymentController::class, 'update_cart']);
