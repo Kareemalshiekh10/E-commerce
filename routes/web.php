@@ -85,6 +85,12 @@ Route::post('admin/product_image_sortable', [ProductController::class, 'product_
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('cart', [PaymentController::class, 'cart']);
+Route::post('update_cart', [PaymentController::class, 'update_cart']);
+
+Route::get('checkout', [PaymentController::class, 'checkout']);  
+
+/* Route::post('update_cart', [PaymentController::class, 'update_cart']); */
+
 Route::get('cart/delete/{rowId}', [PaymentController::class, 'cart_delete']);
 Route::post('product/add-to-cart', [PaymentController::class, 'add_to_cart']);
 
