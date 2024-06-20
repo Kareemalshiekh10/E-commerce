@@ -131,4 +131,10 @@ class PaymentController extends Controller
 
         return redirect()->back();
     }
+
+    //place_order
+    public function place_order(Request $request)
+    {
+      dd($request->all());
+    }
 }
