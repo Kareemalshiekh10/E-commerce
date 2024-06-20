@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +51,7 @@
 
     @include('layouts._mobile_menu')
 
-   
+
 
     <!-- Sign in / Register Modal -->
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -65,23 +66,31 @@
                         <div class="form-tab">
                             <ul class="nav nav-pills nav-fill" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
+                                        role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register"
+                                        role="tab" aria-controls="register" aria-selected="false">Register</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="tab-content-5">
-                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form action="#">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel"
+                                    aria-labelledby="signin-tab">
+                                    <form action="#" id="SubmitFormLogin" method="POST">
+                                        {{ csrf_field() }}
                                         <div class="form-group">
-                                            <label for="singin-email">Username or email address <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                            <label for="singin-email">Email Address <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="text" class="form-control" id="singin-email" name="email"
+                                                required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="singin-password">Password <span style="color: red;">*</span></label>
-                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                            <label for="singin-password">Password <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="password" class="form-control" id="singin-password"
+                                                name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -91,8 +100,10 @@
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
-                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
+                                                <input type="checkbox" name="is_remember" class="custom-control-input"
+                                                    id="signin-remember">
+                                                <label class="custom-control-label" for="signin-remember">Remember
+                                                    Me</label>
                                             </div><!-- End .custom-checkbox -->
 
                                             <a href="#" class="forgot-link">Forgot Your Password?</a>
@@ -116,23 +127,29 @@
                                         </div><!-- End .row -->
                                     </div><!-- End .form-choice -->
                                 </div><!-- .End .tab-pane -->
-                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <div class="tab-pane fade" id="register" role="tabpanel"
+                                    aria-labelledby="register-tab">
                                     <form action="#" id="SubmitFormRegister" method="POST">
                                         {{ csrf_field() }}
 
                                         <div class="form-group">
                                             <label for="register-name">Name <span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="register-name" name="name" required>
+                                            <input type="text" class="form-control" id="register-name"
+                                                name="name" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="register-email">Email address <span style="color: red;">*</span></label>
-                                            <input type="email" class="form-control" id="register-email" name="email" required>
+                                            <label for="register-email">Email address <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="email" class="form-control" id="register-email"
+                                                name="email" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-group">
-                                            <label for="register-password">Password <span style="color: red;">*</span></label>
-                                            <input type="password" class="form-control" id="register-password" name="password" required>
+                                            <label for="register-password">Password <span
+                                                    style="color: red;">*</span></label>
+                                            <input type="password" class="form-control" id="register-password"
+                                                name="password" required>
                                         </div><!-- End .form-group -->
 
                                         <div class="form-footer">
@@ -142,8 +159,10 @@
                                             </button>
 
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
+                                                <input type="checkbox" class="custom-control-input"
+                                                    id="register-policy" required>
+                                                <label class="custom-control-label" for="register-policy">I agree to
+                                                    the <a href="#">privacy policy</a> *</label>
                                             </div><!-- End .custom-checkbox -->
                                         </div><!-- End .form-footer -->
                                     </form>
@@ -216,7 +235,30 @@
     <script src="{{ url('auth_register') }}"></script>
 
     <script type="text/javascript">
-        $('body').delegate('#SubmitFormRegister', 'submit', function(e){
+       $('body').delegate('#SubmitFormLogin', 'submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('auth_login') }}",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(data) {
+                    if (data.status) {
+                        alert(data.message); 
+                        location.reload();
+                    } else {
+                        alert(data.message); 
+                    }
+                },
+                error: function(data) {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+
+
+
+        $('body').delegate('#SubmitFormRegister', 'submit', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',
@@ -225,7 +267,7 @@
                 dataType: "json",
                 success: function(data) {
                     alert(data.message);
-                    if(data.status == true) {
+                    if (data.status == true) {
                         location.reload();
                     }
                 },
@@ -235,8 +277,8 @@
             });
         });
     </script>
-    
-   
+
+
 </body>
 
 
