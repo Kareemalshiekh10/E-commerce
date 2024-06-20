@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\RegisterMail;
 
 class AuthController extends Controller
 {
@@ -45,6 +47,7 @@ class AuthController extends Controller
             $save->password = Hash::make($request->password);
     
             $save->save();
+           /*  Mail::to($save->email)->send(new RegisterMail($save)); */
             $json['status'] = true;
             $json['message'] = 'Registered successfully';
         }
@@ -55,6 +58,15 @@ class AuthController extends Controller
         }
         echo json_encode($json);
     }
+
+   /*  public function activate_email($id)
+    {
+        $id = base64_encode($id);
+        $user = User::getSingle($id);
+        $user->email_verified_at = date('Y-M-D H:I:S');
+        $user->save();
+        return redirect('login')->with('success', 'Email verified successfully');
+    } */
     
 }
 
