@@ -10,5 +10,9 @@ class OrderModel extends Model
     use HasFactory;
     protected $table = 'orders';
 
+    public static function getSingle($id)
+    {
+        return self::find($id);
+    }
    
 }

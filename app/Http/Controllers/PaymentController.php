@@ -262,6 +262,7 @@ class PaymentController extends Controller
             }
             $json['status'] = true;
             $json['message'] = 'Order placed successfully';
+            $json['redirect'] = url('checkout/payment?order_id='.base64_encode($order->id));
         }
         else
         {
@@ -270,6 +271,41 @@ class PaymentController extends Controller
         }
         echo json_encode($json);
         
-        die;
+    }
+
+    public function checkout_payment(Request $request)
+    {
+        if(!empty(Cart::subtotal()) && !empty($request->order_id))
+        {
+            $order_id = base64_decode($request->order_id);
+            $getOrder = OrderModel::getSingle($order_id);
+            if(!empty($getOrder))
+            {
+                if($getOrder->payment_method == 'cash')
+                {
+                    $getOrder->is_payment = 1;
+                    $getOrder->save();
+
+                    Cart::destroy();
+                    return redirect('cart')->with('success', "Order placed successfully");
+                }
+                else if($getOrder->payment_method == 'paypal')
+                {
+
+                }
+                else if($getOrder->payment_method == 'stripe')
+                {
+
+                }
+            }
+            else
+            {
+                abort(404);
+            }
+        }
+        else
+        {
+            abort(404);
+        }
     }
 }

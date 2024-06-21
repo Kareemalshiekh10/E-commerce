@@ -250,6 +250,10 @@
                      {
                         alert(data.message);
                      }
+                     else
+                     {
+                        window.location.href = data.redirect;
+                     }
                 },
                 error: function(data) {
                     /*  saveButton(); */
