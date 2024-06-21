@@ -291,11 +291,20 @@ class PaymentController extends Controller
                 }
                 else if($getOrder->payment_method == 'paypal')
                 {
+                    $getOrder->is_payment = 1;
+                    $getOrder->save();
+
+                    Cart::destroy();
+                    return redirect('cart')->with('success', "Order placed successfully");
 
                 }
                 else if($getOrder->payment_method == 'stripe')
                 {
+                    $getOrder->is_payment = 1;
+                    $getOrder->save();
 
+                    Cart::destroy();
+                    return redirect('cart')->with('success', "Order placed successfully");
                 }
             }
             else
