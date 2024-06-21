@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\ShippingChargeController;
+use App\Http\Controllers\Admin\OrderController;
 
 
 use App\Http\Controllers\ProductController as ProductFront;
@@ -33,6 +34,8 @@ Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
 Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
 Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
+Route::get('admin/orders/list', [OrderController::class, 'list']);
+Route::get('admin/orders/detail/{id}', [OrderController::class, 'order_detail']);
 
 Route::get('admin/category/list', [CategoryController::class, 'list']);
 Route::get('admin/category/add', [CategoryController::class, 'add']);
