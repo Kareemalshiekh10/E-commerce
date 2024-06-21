@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 /* use Gloudemans\Shoppingcart\Cart; */
 /* use darryldecode\src\Darryldecode\Cart;  */
 use Cart;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;    
 use App\Models\ProductModel;
 use App\Models\ProductSizeModel;
 use App\Models\DiscountCodeModel;
+use App\Models\ColorModel;  
 use App\Models\ShippingChargeModel;
+use App\Models\OrderModel;
+use App\Models\OrderItemModel;
+use Dompdf\Css\Color;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -132,9 +138,138 @@ class PaymentController extends Controller
         return redirect()->back();
     }
 
-    //place_order
     public function place_order(Request $request)
     {
-      dd($request->all());
+        $validate = 0;
+        $message = '';
+        if(!empty(Auth::check()))
+        {
+            $user_id = Auth::user()->id;
+        }
+        else
+        {
+            if(!empty($request->is_create))
+            {
+                $checkEmail = User::checkEmail($request->email);
+                if(!empty($checkEmail))
+                {
+                    $message = 'Email already exists';
+                    $validate = 1;
+                }
+                else
+                {
+                    $save = new User;
+                    $save->name = trim($request->first_name);
+                    $save->email = trim($request->email);                           
+                    $save->password = Hash::make($request->password);
+            
+                    $save->save();
+                    $user_id = $save->id;
+                }
+            }
+            else
+            {
+                $user_id = '';
+            }
+        }
+       
+        if(empty($validate))
+        {
+            $getShipping = ShippingChargeModel::getSingle($request->shipping);
+            $payable_total = Cart::SubTotal();
+            $discount_amount = 0;
+            $discount_code = '';
+            if(!empty($request->discount_code))
+            {
+                $getDiscount = DiscountCodeModel::CheckDiscount($request->discount_code);
+                if(!empty($getDiscount));
+                {
+                    if($getDiscount->type == 'Amount')
+                    {
+                        $discount_code = $request->discount_code;
+                        $discount_amount = $getDiscount->percent_amount;
+                        $payable_total = $payable_total - $getDiscount->percent_amount;
+                    }
+                    else
+                    {
+                        $discount_amount = ($payable_total * $getDiscount->percent_amount) / 100;
+                        $payable_total = $payable_total - $discount_amount ;
+                    }
+    
+                }
+               
+            }
+            $shipping_amount = !empty($getShipping->price) ? $getShipping->price : 0;
+            $total_amount = $payable_total + $shipping_amount;
+    
+    
+            $order = new OrderModel;
+            if(!empty($user_id))
+            {
+                $order->user_id = trim($user_id);
+            }
+            $order->first_name = trim($request->first_name);
+            $order->last_name = trim($request->last_name);
+            $order->company_name = trim($request->company_name);
+            $order->country = trim($request->country);
+            $order->address_one = trim($request->address_one);
+            $order->address_two = trim($request->address_two);
+            $order->city = trim($request->city);
+            $order->state = trim($request->state);
+            $order->postcode = trim($request->postcode);
+            $order->phone = trim($request->phone);
+            $order->email = trim($request->email);
+            $order->note = trim($request->note);
+            $order->discount_amount = trim($discount_amount);
+            $order->discount_code = trim($discount_code);
+            $order->shipping_id = trim($request->shipping);
+            $order->shipping_amount = trim($shipping_amount);
+            $order->total_amount = trim($total_amount);
+        
+            $order->payment_method = trim($request->payment_method);
+    
+            $order->save();
+    
+            foreach (Cart::content() as $key=>$cart)
+            {
+                $order_item = new OrderItemModel;
+                $order_item->order_id = $order->id; 
+                $order_item->product_id = $cart->id;
+                $order_item->quantity = $cart->qty;
+                $order_item->price = $cart->price;
+    
+                // Check if attributes are set
+            if (isset($cart->options) && isset($cart->options['color_id'])) {
+                $color_id = $cart->options['color_id'];
+                if (!empty($color_id)) {
+                    $getColor = ColorModel::getSingle($color_id);
+                    $order_item->color_name = $getColor ? $getColor->name : null;
+                }
+            }
+    
+            if (isset($cart->options) && isset($cart->options['size_id'])) {
+                $size_id = $cart->options['size_id'];
+                if (!empty($size_id)) {
+                    $getSize = ProductSizeModel::getSingle($size_id);
+                    $order_item->size_name = $getSize ? $getSize->name : null;
+                    $order_item->size_amount = $getSize ? $getSize->price : null;
+                }
+            }
+                
+                $order_item->total_price = $cart->price;
+                $order_item->save();
+    
+            }
+            $json['status'] = true;
+            $json['message'] = 'Order placed successfully';
+        }
+        else
+        {
+            $json['status'] = false;
+            $json['message'] = $message;
+        }
+        echo json_encode($json);
+        
+        die;
     }
 }
