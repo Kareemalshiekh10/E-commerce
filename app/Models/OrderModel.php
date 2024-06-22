@@ -28,10 +28,10 @@ class OrderModel extends Model
         return self::select('id')
             ->where('is_payment', '=', 1)
             ->where('is_delete', '=', 0)
-            ->whereDate('created_at', '=', date('Y-M-D'))
+            ->whereDate('created_at', '=', date('Y-m-d'))
             ->count();
     }
-    static public function getTotalAmount()
+        static public function getTotalAmount()
     {
         return self::select('id')
             ->where('is_payment', '=', 1)
@@ -43,8 +43,10 @@ class OrderModel extends Model
         return self::select('id')
             ->where('is_payment', '=', 1)
             ->where('is_delete', '=', 0)
+            ->whereDate('created_at', '=', date('Y-m-d'))
             ->sum('total_amount');
     }
+    
 
 
 

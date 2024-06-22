@@ -58,12 +58,12 @@ class User extends Authenticatable
     static public function getTotalTodayCustomer()
     {
         return User::select('users.*')
-            ->where('is_admin','=',0)
-            ->where('is_delete','=',0)
-            ->whereDate('created_at','=',date('Y-M-D'))
+            ->where('is_admin', '=', 0)
+            ->where('is_delete', '=', 0)
+            ->whereDate('created_at', '=', date('Y-m-d'))
             ->count();
     }
-
+    
     static public function getCustomer()
     {
         $return = User::select('users.*');
