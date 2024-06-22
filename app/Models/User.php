@@ -63,6 +63,15 @@ class User extends Authenticatable
             ->whereDate('created_at', '=', date('Y-m-d'))
             ->count();
     }
+    static public function getTotalCustomerMonth($start_date,$end_date)
+    {
+        return User::select('users.*')
+            ->where('is_admin', '=', 0)
+            ->where('is_delete', '=', 0)
+            ->whereDate('created_at', '>=', $start_date)
+            ->whereDate('created_at', '<=', $end_date)
+            ->count();
+    }
     
     static public function getCustomer()
     {
