@@ -10,13 +10,9 @@ class OrderItemModel extends Model
     use HasFactory;
     protected $table = 'orders_item';
 
-    static public function DeleteRecord($product_id)
+  
+    public function getProduct()
     {
-        self::where('product_id','=',$product_id)->delete();
-    }
-
-    public function getColor()
-    {
-        return $this->belongsTo(ColorModel::class, 'color_id');
+        return $this->belongsTo(ProductModel::class,'product_id');
     }
 }

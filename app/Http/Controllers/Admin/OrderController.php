@@ -19,7 +19,7 @@ class OrderController extends Controller
 
     public function order_detail($id)
     {
-        $data['getSingle'] = OrderModel::getSingle($id);
+        $data['getRecord'] = OrderModel::getSingle($id);
         $data['header_title'] = 'Order Detail';
         return view('admin.order.detail', $data);
     }
