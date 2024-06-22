@@ -168,6 +168,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ url('admin/customer/list') }}" class="nav-link @if(Request::segment(2)=='customer_list') active @endif">
+            <i class="nav-icon fas fa-users"></i>
+            <p>Customer</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ url('admin/orders/list') }}" class="nav-link @if(Request::segment(2)=='orders') active @endif">
             <i class="nav-icon fas fa-shopping-cart"></i>
             <p>Orders</p>
