@@ -46,6 +46,15 @@ class User extends Authenticatable
         ];
     }
 
+    static public function getAdmin()
+    {
+        return User::select('users.*')
+            ->where('is_admin','=',1)
+            ->where('is_delete','=',0)
+            ->orderBy('id','desc')
+            ->get();
+    }
+
 
     static public function getTotalCustomer()
     {
