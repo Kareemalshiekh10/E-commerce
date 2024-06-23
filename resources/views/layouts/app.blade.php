@@ -276,6 +276,23 @@
                 }
             });
         });
+
+        
+       /*  $('body').delegate('.add_to_wishlist', 'click', function(e) {
+            var poduct_id = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('add_to_wishlist') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    poduct_id:poduct_id,
+                }
+                dataType: "json",
+                success: function(data) {
+                    
+                }
+            });
+        }); */
     </script>
 
 
