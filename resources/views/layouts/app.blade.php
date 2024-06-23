@@ -278,13 +278,19 @@
         });
 
         
+<<<<<<< HEAD
        /*  $('body').delegate('.add_to_wishlist', 'click', function(e) {
             var poduct_id = $(this).attr('id');
+=======
+        $('body').delegate('.add_to_wishlist', 'click', function(e) {
+            var product_id = $(this).attr('id');
+>>>>>>> 55aa8b54191514684052f9548184618ee6cd942f
             $.ajax({
                 type: 'POST',
                 url: "{{ url('add_to_wishlist') }}",
                 data: {
                     "_token": "{{ csrf_token() }}",
+<<<<<<< HEAD
                     poduct_id:poduct_id,
                 }
                 dataType: "json",
@@ -293,6 +299,18 @@
                 }
             });
         }); */
+=======
+                    product_id: product_id,
+                },
+                dataType: "json",
+                success: function(data) {
+                  
+                }
+                
+            });
+        });
+
+>>>>>>> 55aa8b54191514684052f9548184618ee6cd942f
     </script>
 
 
