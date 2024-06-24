@@ -102,6 +102,7 @@ Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::get('customer/logout', [AuthController::class, 'customer_logout']);
 
 Route::post('auth_register', [AuthController::class, 'auth_register']);
 

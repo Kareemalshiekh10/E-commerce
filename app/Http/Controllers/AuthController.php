@@ -33,9 +33,14 @@ class AuthController extends Controller
     public function logout_admin()
     {
         Auth::logout();
-        return redirect('');
+        return redirect('admin');
     }
 
+    public function customer_logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
     public function auth_login(Request $request)
     {
         $remember = $request->has('remember');

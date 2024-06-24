@@ -357,6 +357,8 @@
     <script src="{{ url('assets/js/bootstrap-input-spinner.js') }}"></script>
     <script src="{{ url('assets/js/jquery.elevateZoom.min.js') }}"></script>
     <script src="{{ url('assets/js/bootstrap-input-spinner.js') }}"></script>
+    <script src="{{ url('assets/js/jquery.elevateZoom.min.js') }}"></script>
+
 
     <script type="text/javascript">
     $('.getSizePrice').change(function(){
@@ -364,6 +366,18 @@
         var price = $('option:selected', this).attr('data-price');
         var total = parseFloat(product_price) + parseFloat(price);
         $('#getTotalPrice').html(total.toFixed(2));
-    })
+    });
+    $(document).ready(function() {
+        $('.product-gallery-item').on('click', function(e) {
+            e.preventDefault();
+            var imageSrc = $(this).data('image');
+            var zoomImageSrc = $(this).data('zoom-image');
+
+            $('#product-zoom').attr('src', imageSrc).data('zoom-image', zoomImageSrc);
+            $('.zoomWindowContainer div').css('background-image', 'url(' + zoomImageSrc + ')');
+        });
+    });
+   
+    
     </script>
 @endsection

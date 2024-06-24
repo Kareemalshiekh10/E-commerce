@@ -236,7 +236,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Additional Information<span style="color:red">*</span> </label>
+                                                <label>Additional Information</span> </label>
                                                 <textarea name="additional_information" class="form-control editor" placeholder="Additional Information">{{ $product->additional_information }}</textarea>
                                             </div>
                                         </div>
