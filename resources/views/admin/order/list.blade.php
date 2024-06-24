@@ -139,7 +139,7 @@
                                             <th>Shipping Amount ($)</th>
                                             <th>Total Amount ($)</th>
                                             <th>Payment Method</th>
-                                            <th>Status</th>
+                                           {{--  <th>Status</th> --}}
                                             <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
@@ -162,7 +162,7 @@
                                                 <td>{{ number_format($value->shipping_amount, 2) }}</td>
                                                 <td>{{ number_format($value->total_amount, 2) }}</td>
                                                 <td style="text-transform: capitalize;">{{ $value->payment_method }}</td>
-                                                <td><!-- Add status value here --></td>
+                                           {{--      <td><!-- Add status value here --></td> --}}
                                                 <td>{{ date('d-M-Y H:i A', strtotime($value->created_at)) }}</td>
                                                 <td>
                                                     <a href="{{ url('admin/orders/detail/' . $value->id) }}"

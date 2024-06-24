@@ -46,6 +46,7 @@ class User extends Authenticatable
         ];
     }
 
+
     static public function getAdmin()
     {
         return User::select('users.*')
@@ -54,7 +55,32 @@ class User extends Authenticatable
             ->orderBy('id','desc')
             ->get();
     }
+    static public function getTotalCustomer()
+    {
+        return self::select('id')   
+        ->where('is_admin','=',0)
+        ->where('is_delete','=',0)
+        ->count();
+    }
 
+    static public function getTotalTodayCustomer()
+    {
+        return User::select('users.*')
+            ->where('is_admin', '=', 0)
+            ->where('is_delete', '=', 0)
+            ->whereDate('created_at', '=', date('Y-m-d'))
+            ->count();
+    }
+    static public function getTotalCustomerMonth($start_date,$end_date)
+    {
+        return User::select('users.*')
+            ->where('is_admin', '=', 0)
+            ->where('is_delete', '=', 0)
+            ->whereDate('created_at', '>=', $start_date)
+            ->whereDate('created_at', '<=', $end_date)
+            ->count();
+    }
+    
     static public function getCustomer()
     {
         $return = User::select('users.*');
