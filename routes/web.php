@@ -97,6 +97,7 @@ Route::get('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 
 Route::post('admin/shipping_charge/edit/{id}', [ShippingChargeController::class, 'update']);
 Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class, 'delete']);
 
+Route::post('add_to_wishlist', [ProductFront::class, 'add_to_wishlist']);
 
 
 

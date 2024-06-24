@@ -134,4 +134,10 @@ class ProductController extends Controller
             "success" => view('product._list', ["getProduct"  => $getProduct,])->render(),],200
         );
     }
+
+    public function add_to_wishlist(Request $request)
+    {
+        dd($request->all());
+       
+    }
 }
