@@ -25,7 +25,7 @@ class ProductModel extends Model
             ->join('users', 'users.id', '=', 'product.created_by')
             ->where('product.is_delete', '=', 0)
             ->orderBy('product.id', 'desc')
-            ->paginate(5);
+            ->paginate(15);
     }
 
     static public function getProduct($category_id= '', $subcategory_id = '')

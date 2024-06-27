@@ -232,7 +232,7 @@
     <script src="{{ url('assets/js/jquery.magnific-popup.min.js') }}"></script>
     @yield('script')
     <!-- Main JS File -->
-    <script src="{{ url('auth_register') }}"></script>
+    {{-- <script src="{{ url('auth_register') }}"></script> --}}
 
     <script type="text/javascript">
        $('body').delegate('#SubmitFormLogin', 'submit', function(e) {

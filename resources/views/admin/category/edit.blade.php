@@ -24,7 +24,7 @@
                         <div class="card card-primary">
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="" method="POST">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
@@ -46,7 +46,28 @@
                                         </select>
                                     </div>
 
+
                                     <hr>
+
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control"  name="image_name">
+                                        @if (!empty($getRecord->getImage()))
+                                            <img src="{{ $getRecord->getImage() }}" style="height:100px;" >
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Button Name</label>
+                                        <input type="text" class="form-control"  name="button_name" value="{{ old('button_name', $getRecord->button_name) }}" placeholder="Button Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="display: block;">Home Screen</label>
+                                        <input type="checkbox"  name="is_home" {{ !empty($getRecord->is_home) ? 'checked':'' }}>
+                                    </div>
+
+                                    <hr>
+
+
                                     <div class="form-group">
                                         <label>Meta title<span style="color:red">*</span></label>
                                         <input type="text" class="form-control" placeholder="Meta title" name="meta_title" required value="{{ old('meta_title', $getRecord->meta_title) }}" >

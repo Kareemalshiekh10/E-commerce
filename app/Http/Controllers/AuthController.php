@@ -67,7 +67,7 @@ class AuthController extends Controller
             $save->password = Hash::make($request->password);
     
             $save->save();
-           /*  Mail::to($save->email)->send(new RegisterMail($save)); */
+         
             $json['status'] = true;
             $json['message'] = 'Registered successfully';
         }

@@ -128,7 +128,7 @@ class OrderModel extends Model
         $return = $return->where('is_payment', '=', 1)
             ->where('is_delete', '=', 0)
             ->orderBy('id', 'desc')
-            ->paginate(5);
+            ->paginate(10);
 
         return $return;
     }

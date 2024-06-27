@@ -244,7 +244,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Shipping Returns<span style="color:red">*</span> </label>
+                                                <label>Shipping Returns</label>
                                                 <textarea name="shipping_returns" class="form-control" placeholder="Shipping Returns">{{ $product->shipping_returns }}</textarea>
                                             </div>
                                         </div>

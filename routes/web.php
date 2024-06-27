@@ -78,6 +78,7 @@ Route::get('admin/product/add', [ProductController::class, 'add']);
 Route::post('admin/product/add', [ProductController::class, 'insert']);
 Route::get('admin/product/edit/{id}', [ProductController::class, 'edit']);
 Route::post('admin/product/edit/{id}', [ProductController::class, 'update']);
+Route::get('admin/product/delete/{id}', [ProductController::class, 'delete']);
 
 Route::get('admin/product/image_delete/{id}', [ProductController::class, 'image_delete']);
 Route::post('admin/product_image_sortable', [ProductController::class, 'product_image_sortable']);

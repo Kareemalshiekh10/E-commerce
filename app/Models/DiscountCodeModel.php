@@ -20,7 +20,7 @@ class DiscountCodeModel extends Model
         return self::select('discount_code.*')
             ->where('discount_code.is_delete', '=', 0)  // Exclude deleted records
             ->orderBy('discount_code.id', 'desc')
-            ->paginate(20);
+            ->paginate(15);
     }
 
     static public function CheckDiscount($discount_code)

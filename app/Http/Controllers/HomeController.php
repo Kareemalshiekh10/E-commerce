@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +12,7 @@ class HomeController extends Controller
             $data['meta_title'] = 'Intell$Mart';
             $data['meta_description'] = '';
             $data['meta_keywords'] = '';
+            $data['getCategory'] = CategoryModel::getRecordActiveHome();
         return view('home',$data);
     }
 }

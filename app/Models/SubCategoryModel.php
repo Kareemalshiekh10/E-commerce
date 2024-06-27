@@ -22,7 +22,7 @@ class SubCategoryModel extends Model
             ->join('users', 'users.id', '=', 'sub_category.created_by')
             ->where('sub_category.is_delete', '=', 0)  // Exclude deleted records
             ->orderBy('sub_category.id', 'desc')
-            ->paginate(5);
+            ->paginate(15);
     }
 
     static public function getSingleSlug($slug)

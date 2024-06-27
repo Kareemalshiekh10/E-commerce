@@ -107,7 +107,7 @@ class User extends Authenticatable
         $return = $return->where('is_admin','=',0)
             ->where('is_delete','=',0)
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->paginate(15);
         return $return;
     }
     static public function getSingle($id)

@@ -18,18 +18,22 @@
                 @endphp
                 
                 @foreach ($getCategoryMobile as $value_m_c)
-                @if (!empty($value_m_c->getSubCategory->count()))
-                <li>
-                    <a href="{{ url($value_m_c->slug) }}">{{ $value_m_c->name }}</a>
-                    <ul>
-                        @foreach ($value_m_c->getSubCategory as $value_m_sub)
-                            <li><a href="{{url($value_m_c->slug.'/'.$value_m_sub->slug)}}">{{ $value_m_sub->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-                @endif
+                    @if (!empty($value_m_c->getSubCategory->count()))
+                        <li>
+                            <a href="{{ url($value_m_c->slug) }}">{{ $value_m_c->name }}</a>
+                            <ul>
+                                @foreach ($value_m_c->getSubCategory as $value_m_sub)
+                                    <li><a href="{{ url($value_m_c->slug.'/'.$value_m_sub->slug) }}">{{ $value_m_sub->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ url($value_m_c->slug) }}">{{ $value_m_c->name }}</a>
+                        </li>
+                    @endif
                 @endforeach
-                <li>
+            </ul>
         </nav><!-- End .mobile-nav -->
 
         <div class="social-icons">
