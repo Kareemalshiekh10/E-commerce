@@ -230,8 +230,10 @@
     <script src="{{ url('assets/js/superfish.min.js') }}"></script>
     <script src="{{ url('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ url('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url('assets/js/main.js') }}"></script>
     @yield('script')
-    <!-- Main JS File -->
+    
+
     {{-- <script src="{{ url('auth_register') }}"></script> --}}
 
     <script type="text/javascript">

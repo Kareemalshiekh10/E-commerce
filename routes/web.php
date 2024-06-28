@@ -103,6 +103,8 @@ Route::get('admin/shipping_charge/delete/{id}', [ShippingChargeController::class
 
 
 Route::get('/', [HomeController::class, 'home']);
+Route::post('recent_arrival_category_product', [HomeController::class, 'recent_arrival_category_product']);
+
 Route::get('customer/logout', [AuthController::class, 'customer_logout']);
 
 Route::post('auth_register', [AuthController::class, 'auth_register']);

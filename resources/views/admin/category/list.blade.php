@@ -55,7 +55,7 @@
                             <td>{{ $value->id }}</td>
                             <td>
                                 @if (!empty($value->getImage()))
-                                    <img src="{{ $value->getImage() }}" style="height: 100px;" >
+                                    <img src="{{ $value->getImage() }}" style="height: 100px; width:150px;" >
                                 @endif
                             </td>
                             <td>{{ $value->name }}</td>
