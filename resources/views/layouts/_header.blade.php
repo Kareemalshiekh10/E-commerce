@@ -31,9 +31,10 @@
                         <ul>
                             <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
                             <li><a href="{{ url('wishlist.html') }}"><i class="icon-heart-o"></i>My Wishlist
-                                    <span>(3)</span></a></li>
+                                    <span></span></a></li>
                             <li><a href="{{ url('about.html') }}">About Us</a></li>
                             <li><a href="{{ url('contact.html') }}">Contact Us</a></li>
+                            <li><a href="{{ url('chatbot') }}"><i class="fas fa-robot"></i> Chatbot</a></li>
                             @if (!empty(Auth::check()))
                                     <li><a href="{{ url('customer/logout') }}"> <i class="icon-user"></i>Logout</a></li>
                                 @else

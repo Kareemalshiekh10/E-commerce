@@ -14,6 +14,11 @@ use App\Http\Controllers\Admin\DiscountCodeController;
 use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\Admin\OrderController;
 
+use App\Http\Controllers\ChatbotController;
+
+Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot');
+Route::post('/chatbot/generate', [ChatbotController::class, 'generateTextContent'])->name('chatbot.generate');
+Route::post('/chatbot/generate-image', [ChatbotController::class, 'generateImageContent'])->name('chatbot.generate-image');
 
 use App\Http\Controllers\ProductController as ProductFront;
 

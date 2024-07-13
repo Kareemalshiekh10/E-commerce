@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="{{ url('assets/css/plugins/magnific-popup/magnific-popup.css') }}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}">
+  <!-- chatbot -->
+    <link rel="stylesheet" href="{{ url('public/assets/dist/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url('resources\css\chatbot.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 
     @yield('style')
 </head>

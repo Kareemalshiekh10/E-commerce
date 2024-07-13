@@ -18,7 +18,7 @@
                                         <!-- End .banner-subtitle -->
                                         <h3 class="banner-title text-white"><a href="#">Chairs & Chaises <br>Up to 40%
                                                 off</a></h3><!-- End .banner-title -->
-                                        <a href="#" class="btn btn-outline-white banner-link">Shop Now<i
+                                        <a href="" class="btn btn-outline-white banner-link">Shop Now<i
                                                 class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .banner-content -->
                                 </div><!-- End .banner -->
@@ -49,13 +49,13 @@
                         <div class="intro-banners">
                             <div class="banner banner-display">
                                 <a href="#">
-                                    <img src="assets/images/banners/home/intro/banner-2.jpg" alt="Banner">
+                                    <img  style="height: 200px;" src="assets/images/banners/home/banner-3.jpg" alt="Banner">
                                 </a>
 
                                 <div class="banner-content">
                                     <h4 class="banner-subtitle text-darkwhite"><a href="#">Featured</a></h4>
                                     <!-- End .banner-subtitle -->
-                                    <h3 class="banner-title text-white"><a href="#">Outdoor Furniture <br>Summer
+                                    <h3 class="banner-title text-white"><a href="#">Kitchen Home <br>Summer
                                             Sale</a></h3><!-- End .banner-title -->
                                     <a href="#" class="btn btn-outline-white banner-link">Shop Now<i
                                             class="icon-long-arrow-right"></i></a>
